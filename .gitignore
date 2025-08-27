@@ -2,6 +2,16 @@
 # Ignore les fichiers de déploiement automatique
 .github/workflows/*.log
 
+# Fichiers volumineux (>100MB) - GitHub limite
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.wmv
+*.flv
+*.webm
+assets/videos/background-video.mp4
+
 # Node.js (si vous utilisez des outils de build)
 node_modules/
 npm-debug.log*
