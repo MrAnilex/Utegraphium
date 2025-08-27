@@ -1,0 +1,53 @@
+{
+    "name": "Utegraphium - Site Personnel",
+  "short_name": "Utegraphium",
+  "description": "Site personnel d'Utegraphium - Développeur passionné - Hébergé sur GitHub Pages",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ff8000",
+  "theme_color": "#ff8000",
+  "orientation": "portrait-primary",
+  "scope": "./",
+  "lang": "fr",
+  "categories": ["personal", "portfolio", "technology"],
+  "icons": [
+    {
+      "src": "assets/images/placeholder.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Accueil",
+      "short_name": "Accueil",
+      "description": "Retour à l'accueil",
+      "url": "./",
+      "icons": [
+        {
+          "src": "assets/images/placeholder.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Blog",
+      "short_name": "Blog",
+      "description": "Accéder au blog",
+      "url": "./blog",
+      "icons": [
+        {
+          "src": "assets/images/placeholder.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "screenshots": [],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  }
+}

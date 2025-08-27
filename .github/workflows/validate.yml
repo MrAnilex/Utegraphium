@@ -1,0 +1,113 @@
+name: Validate Site
+
+on:
+  pull_request:
+    branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Validate HTML structure
+      run: |
+        echo "🔍 Validating HTML files..."
+        
+        # Check if main files exist
+        if [ ! -f "index.html" ]; then
+          echo "❌ index.html not found"
+          exit 1
+        fi
+        
+        if [ ! -f "404.html" ]; then
+          echo "❌ 404.html not found"
+          exit 1
+        fi
+        
+        if [ ! -f "manifest.json" ]; then
+          echo "❌ manifest.json not found"
+          exit 1
+        fi
+        
+        if [ ! -f "sw.js" ]; then
+          echo "❌ sw.js not found"
+          exit 1
+        fi
+        
+        echo "✅ All required files found"
+        
+    - name: Validate CSS
+      run: |
+        echo "🎨 Validating CSS files..."
+        
+        if [ ! -f "styles.css" ]; then
+          echo "❌ styles.css not found"
+          exit 1
+        fi
+        
+        if [ ! -f "assets/css/styles.css" ]; then
+          echo "❌ assets/css/styles.css not found"
+          exit 1
+        fi
+        
+        echo "✅ CSS files found"
+        
+    - name: Validate assets structure
+      run: |
+        echo "📁 Validating assets structure..."
+        
+        # Check if assets directory exists
+        if [ ! -d "assets" ]; then
+          echo "❌ assets directory not found"
+          exit 1
+        fi
+        
+        # Check if subdirectories exist
+        if [ ! -d "assets/css" ]; then
+          echo "❌ assets/css directory not found"
+          exit 1
+        fi
+        
+        if [ ! -d "assets/js" ]; then
+          echo "❌ assets/js directory not found"
+          exit 1
+        fi
+        
+        if [ ! -d "assets/images" ]; then
+          echo "❌ assets/images directory not found"
+          exit 1
+        fi
+        
+        echo "✅ Assets structure is valid"
+        
+    - name: Check file sizes
+      run: |
+        echo "📊 Checking file sizes..."
+        
+        # Check if any file is too large (> 10MB)
+        find . -type f -size +10M | while read file; do
+          echo "⚠️  Large file detected: $file"
+        done
+        
+        echo "✅ File size check completed"
+        
+    - name: Validate URLs in HTML
+      run: |
+        echo "🔗 Validating internal links..."
+        
+        # Basic check for common issues
+        if grep -r "http://localhost" . --include="*.html" --include="*.js" --include="*.css"; then
+          echo "⚠️  Localhost URLs found - these should be relative or HTTPS"
+        fi
+        
+        echo "✅ URL validation completed"

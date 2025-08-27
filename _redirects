@@ -1,0 +1,9 @@
+# Redirects for GitHub Pages
+# This file is used by Netlify, but GitHub Pages doesn't use it
+# Keeping it for future reference or if you switch to Netlify
+
+# Redirect old URLs to new ones
+/old-page /new-page 301
+
+# Handle 404s gracefully
+/* /404.html 404

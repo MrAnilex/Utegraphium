@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page non trouvée | Utegraphium</title>
+    
+    <!-- Preload video for better performance -->
+    <link rel="preload" href="assets/videos/background-video.mp4" as="video" type="video/mp4">
+    
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        
+        /* Background video container */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        /* Background video styles */
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            transform: scale(1.2);
+            object-position: center center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .background-video.loaded {
+            opacity: 1;
+        }
+        
+        /* Video overlay for better text readability */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 153, 51, 0.15);
+            z-index: -1;
+        }
+        
+        /* Fallback background for browsers without video support */
+        .background-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffb366 0%, #ff9933 50%, #ff8000 100%);
+            z-index: -3;
+        }
+        
+        .error-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(45deg, #ff8000, #ffb366);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .error-message {
+            font-size: 1.5rem;
+            margin: 20px 0;
+        }
+        
+        .error-description {
+            font-size: 1.1rem;
+            margin: 20px 0;
+            opacity: 0.9;
+        }
+        
+        .home-button {
+            display: inline-block;
+            background: rgba(255, 128, 0, 0.8);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 20px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .home-button:hover {
+            background: rgba(255, 128, 0, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 128, 0, 0.3);
+        }
+        
+        .emoji {
+            font-size: 2rem;
+            margin: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-message {
+                font-size: 1.2rem;
+            }
+            
+            .error-container {
+                padding: 20px;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background video container -->
+    <div class="background">
+        <video autoplay muted loop playsinline class="background-video" preload="metadata">
+            <source src="assets/videos/background-video.mp4" type="video/mp4">
+            <source src="assets/videos/background-video.webm" type="video/webm">
+            <!-- Fallback if video doesn't load -->
+        </video>
+        <div class="video-overlay"></div>
+        <!-- Fallback for browsers without video support -->
+        <div class="background-fallback"></div>
+    </div>
+
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-message">Oups ! Cette page n'existe pas 🚌</h2>
+        <p class="error-description">
+            La page que vous cherchez semble avoir pris le bus vers une autre destination.
+            <br>
+            Peut-être qu'elle est partie faire du GAMING ou qu'elle est devenue chaotique ? 🌪️
+        </p>
+        
+        <div class="emoji">🪐 🌌</div>
+        
+        <a href="./" class="home-button">
+            🏠 Retour à l'accueil
+        </a>
+        
+        <br>
+        
+        <a href="javascript:history.back()" class="home-button">
+            ⬅️ Retour en arrière
+        </a>
+        
+        <p style="margin-top: 30px; opacity: 0.7; font-size: 0.9rem;">
+            <em>Site personnel d'Utegraphium - Hébergé sur GitHub Pages</em>
+        </p>
+    </div>
+    
+    <script>
+        // Video loading handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.background-video');
+            const errorCode = document.querySelector('.error-code');
+            const buttons = document.querySelectorAll('.home-button');
+            
+            // Handle video loading
+            if (video) {
+                video.addEventListener('loadeddata', function() {
+                    video.classList.add('loaded');
+                });
+                
+                // Fallback if video fails to load
+                video.addEventListener('error', function() {
+                    console.log('Video failed to load, using fallback background');
+                });
+            }
+            
+            // Animation du code d'erreur
+            errorCode.style.opacity = '0';
+            errorCode.style.transform = 'scale(0.5)';
+            
+            setTimeout(() => {
+                errorCode.style.transition = 'all 0.8s ease';
+                errorCode.style.opacity = '1';
+                errorCode.style.transform = 'scale(1)';
+            }, 100);
+            
+            // Animation des boutons
+            buttons.forEach((button, index) => {
+                button.style.opacity = '0';
+                button.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    button.style.transition = 'all 0.5s ease';
+                    button.style.opacity = '1';
+                    button.style.transform = 'translateY(0)';
+                }, 500 + (index * 200));
+            });
+        });
+    </script>
+</body>
+</html>

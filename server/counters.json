@@ -1,0 +1,14 @@
+{
+  "uniqueVisitors": 42,
+  "totalVisits": 1337,
+  "visitsToday": 15,
+  "visitsWeek": 89,
+  "lastUpdate": "2024-01-01T00:00:00.000Z",
+  "visitorIds": [],
+  "dailyStats": {
+    "2024-01-01": 15,
+    "2024-01-02": 12,
+    "2024-01-03": 18
+  }
+}
+
