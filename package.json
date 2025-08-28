@@ -1,0 +1,21 @@
+{
+  "name": "utegraphium-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "esbuild src/main.js --bundle --minify --target=es5 --outfile=dist/main.js || true && postcss src/styles.css -o dist/styles.css --env production || true",
+    "start": "esbuild src/main.js --bundle --servedir=./dist --outfile=dist/main.js || true"
+  },
+  "devDependencies": {
+    "esbuild": "^0.18.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0",
+    "cssnano": "^5.1.0"
+  },
+  "browserslist": [
+    ">0.5%",
+    "last 2 versions",
+    "not dead",
+    "IE 11"
+  ]
+}
