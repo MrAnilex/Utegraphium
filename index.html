@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Utegraphium">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#ff8000">
+    <meta name="msapplication-TileColor" content="#ff8000">
+    <meta name="description" content="Site personnel d'Utegraphium - Développeur passionné">
+    <meta name="keywords" content="Utegraphium, développeur, gaming, France">
+    <meta name="author" content="Utegraphium">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://utegraphium.com/">
+    <meta property="og:title" content="UTEGRAPHIUM !!">
+    <meta property="og:description" content="Site personnel d'Utegraphium - Développeur passionné">
+    <meta property="og:image" content="assets/images/placeholder.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://utegraphium.com/">
+    <meta property="twitter:title" content="UTEGRAPHIUM !!">
+    <meta property="twitter:description" content="Site personnel d'Utegraphium - Développeur passionné">
+    <meta property="twitter:image" content="assets/images/placeholder.png">
+    
+    <title>UTEGRAPHIUM !!</title>
+    
+    <!-- DNS Prefetch pour les domaines externes -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Preconnect pour les ressources critiques -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload des ressources critiques -->
+    <link rel="preload" href="assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="assets/css/browser-compatibility.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="assets/images/placeholder.png" as="image">
+    <link rel="preload" href="assets/videos/background-video.mp4" as="video" type="video/mp4">
+    
+    <!-- CSS optimisé avec fallback -->
+    <noscript>
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/browser-compatibility.css">
+    </noscript>
+    
+    <!-- Google Fonts optimisé avec display=swap et fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/images/placeholder.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/placeholder.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/placeholder.png">
+    
+    <!-- Styles de fallback pour les navigateurs sans JavaScript -->
+    <style>
+        /* Fallback styles pour les navigateurs basiques */
+        body { font-family: Arial, sans-serif; }
+        .background { background: linear-gradient(135deg, #ffb366 0%, #ff9933 50%, #ff8000 100%); }
+    </style>
+</head>
+<body>
+    <!-- Arrière-plan optimisé avec lazy loading et fallbacks -->
+    <div class="background">
+        <video autoplay muted loop playsinline class="background-video" preload="metadata" poster="assets/images/placeholder.png">
+            <!-- Format WebM pour Chrome, Firefox, Edge -->
+            <source src="assets/videos/background-video.webm" type="video/webm">
+            <!-- Format MP4 pour Safari, IE -->
+            <source src="assets/videos/background-video.mp4" type="video/mp4">
+            <!-- Format OGV pour les navigateurs plus anciens -->
+            <source src="assets/videos/background-video.ogv" type="video/ogg">
+            <!-- Fallback si la vidéo ne charge pas -->
+            <div class="video-fallback-content">
+                <div class="fallback-gradient"></div>
+            </div>
+        </video>
+        <div class="video-overlay"></div>
+        <!-- Fallback pour les navigateurs sans support vidéo -->
+        <div class="background-fallback"></div>
+    </div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🪐Utegraphium🌌</h2>
+            </div>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="#" class="nav-link active" role="menuitem">🏠 Accueil</a></li>
+                <li role="none"><a href="#" class="nav-link" role="menuitem">📝 Blog</a></li>
+                <li role="none"><a href="#" class="nav-link" role="menuitem">👤 À propos</a></li>
+                <li role="none"><a href="#" class="nav-link" role="menuitem">📧 Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content" role="main">
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="hero-avatar">
+                    <img src="assets/images/placeholder.png" alt="Avatar de Utegraphium" class="avatar-image" loading="lazy" decoding="async">
+                </div>
+                <h1 class="hero-title">Bienvenue sur mon supposé site ? (c'est toujours en cours de coding)</h1>
+                <p class="hero-subtitle">Salut ! Je suis un mec passionné qui aime créer des choses cool. Je suis le fou du bus. RUUUUUUH ! 🚌</p>
+                <div class="hero-stats" role="region" aria-label="Statistiques">
+                    <div class="stat-item">
+                        <span class="stat-number visitor-count" aria-live="polite">0</span>
+                        <span class="stat-label">Visiteurs uniques</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number total-visits-count" aria-live="polite">0</span>
+                        <span class="stat-label">Visites totales</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Passion</span>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section class="quick-facts">
+            <h2 class="section-title">✨ Quelques infos rapides</h2>
+            <div class="facts-grid" role="list">
+                <div class="fact-card" role="listitem">
+                    <div class="fact-icon">
+                        <img src="assets/images/custom-icons/gaming-icon.png" alt="Icône Gaming" class="custom-icon" loading="lazy" decoding="async">
+                    </div>
+                    <p>Je kiff le jeux-vidéos GAMING et les PC et le cinéma 🎮</p>
+                </div>
+                <div class="fact-card" role="listitem">
+                    <div class="fact-icon">
+                        <img src="assets/images/custom-icons/chaos-icon.png" alt="Icône Chaos" class="custom-icon" loading="lazy" decoding="async">
+                    </div>
+                    <p>Je suis beaucoup trop aléatoire et chaotique (MÉTALLURGIE) 🌪️</p>
+                </div>
+                <div class="fact-card" role="listitem">
+                    <div class="fact-icon">
+                        <img src="assets/images/custom-icons/social-icon.png" alt="Icône Social" class="custom-icon" loading="lazy" decoding="async">
+                    </div>
+                    <p>Je suis GIGA sociale 👥</p>
+                </div>
+                <div class="fact-card" role="listitem">
+                    <div class="fact-icon">
+                        <img src="assets/images/custom-icons/france-icon.png" alt="Icône France" class="custom-icon" loading="lazy" decoding="async">
+                    </div>
+                    <p>Je suis français d'origine Algérienne et j'aime créer des trucs cools 🇫🇷</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="detailed-stats">
+            <h2 class="section-title">📊 Statistiques détaillées (je crois qu'elles sont buguées)</h2>
+            <div class="stats-grid" role="list">
+                <div class="stat-card" role="listitem">
+                    <div class="stat-icon" aria-hidden="true">👥</div>
+                    <div class="stat-content">
+                        <h3>Visiteurs uniques</h3>
+                        <div class="stat-number visitor-count" aria-live="polite">0</div>
+                        <p>Personnes différentes qui ont visité le site</p>
+                    </div>
+                </div>
+                <div class="stat-card" role="listitem">
+                    <div class="stat-icon" aria-hidden="true">📈</div>
+                    <div class="stat-content">
+                        <h3>Visites totales</h3>
+                        <div class="stat-number total-visits-count" aria-live="polite">0</div>
+                        <p>Nombre total de fois que le site a été visité</p>
+                    </div>
+                </div>
+                <div class="stat-card" role="listitem">
+                    <div class="stat-icon" aria-hidden="true">📅</div>
+                    <div class="stat-content">
+                        <h3>Visites aujourd'hui</h3>
+                        <div class="stat-number visits-today" aria-live="polite">0</div>
+                        <p>Nombre de visites pour aujourd'hui</p>
+                    </div>
+                </div>
+                <div class="stat-card" role="listitem">
+                    <div class="stat-icon" aria-hidden="true">📊</div>
+                    <div class="stat-content">
+                        <h3>Visites cette semaine</h3>
+                        <div class="stat-number visits-week" aria-live="polite">0</div>
+                        <p>Nombre de visites cette semaine</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>✨ Utegraphium</h3>
+                <p>Un site personnel unique et créatif</p>
+            </div>
+            <div class="footer-section">
+                <h4>🔗 Liens rapides</h4>
+                <ul role="list">
+                    <li role="listitem"><a href="#">🏠 Accueil</a></li>
+                    <li role="listitem"><a href="#">📝 Blog</a></li>
+                    <li role="listitem"><a href="#">👤 À propos</a></li>
+                    <li role="listitem"><a href="#">📧 Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>🌐 Suivez-moi</h4>
+                <div class="social-links" role="list">
+                    <a href="#" class="social-link" role="listitem">📺 YouTube</a>
+                    <a href="#" class="social-link" role="listitem">🎵 TikTok</a>
+                    <a href="#" class="social-link" role="listitem">📷 Instagram</a>
+                    <a href="#" class="social-link" role="listitem">🐈‍⬛ GitHub</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Utegraphium. Créé avec ❤️ et beaucoup de ☕</p>
+        </div>
+    </footer>
+
+    <!-- Scripts optimisés avec defer et fallbacks -->
+    <script src="assets/js/polyfills.js"></script>
+    <script src="assets/js/browser-detection.js" defer></script>
+    <script src="assets/js/performance-config.js" defer></script>
+    <script src="assets/js/translations.js" defer></script>
+    <script src="assets/js/language-switcher.js" defer></script>
+    <script src="assets/js/background-music.js" defer></script>
+    <script src="assets/js/shared-counter.js" defer></script>
+    <script src="assets/js/site-repair.js" defer></script>
+    <script src="assets/js/debug-display.js" defer></script>
+    <script src="assets/js/video-background.js" defer></script>
+    
+    <!-- Initialisation du compteur avec gestion d'erreur -->
+    <script>
+        // Attendre que le compteur soit initialisé
+        document.addEventListener('DOMContentLoaded', function() {
+            // Vérifier périodiquement si le compteur est initialisé
+            var checkCounter = setInterval(function() {
+                if (window.sharedCounter) {
+                    clearInterval(checkCounter);
+                    console.log('✅ Compteur partagé accessible globalement');
+                }
+            }, 100);
+            
+            // Timeout de sécurité
+            setTimeout(function() {
+                clearInterval(checkCounter);
+                if (!window.sharedCounter) {
+                    console.warn('⚠️ Compteur partagé non initialisé après 5 secondes');
+                }
+            }, 5000);
+            
+            // Initialisation de la vidéo d'arrière-plan (gérée par VideoBackgroundManager)
+            var video = document.querySelector('.background-video');
+            if (video) {
+                // Le VideoBackgroundManager s'occupe de tout
+                console.log('🎥 Vidéo d\'arrière-plan détectée, gestion par VideoBackgroundManager');
+                
+                // Fallback de sécurité
+                setTimeout(function() {
+                    if (video.readyState === 0) {
+                        console.log('⚠️ Vidéo non chargée, activation du fallback de sécurité');
+                        var fallback = document.querySelector('.background-fallback');
+                        if (fallback) {
+                            fallback.style.opacity = '1';
+                        }
+                    }
+                }, 8000);
+            }
+        });
+    </script>
+    
+    <!-- Enregistrement du Service Worker avec fallback -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('sw.js')
+                    .then(function(registration) {
+                        console.log('🚀 Service Worker enregistré:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.warn('❌ Service Worker non enregistré:', error);
+                    });
+            });
+        } else {
+            console.log('⚠️ Service Worker non supporté par ce navigateur');
+        }
+    </script>
+    
+    <!-- Fallback pour les navigateurs sans JavaScript -->
+    <noscript>
+        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ff8000; color: white; display: flex; align-items: center; justify-content: center; z-index: 9999;">
+            <div style="text-align: center; padding: 20px;">
+                <h1>🪐 Utegraphium 🌌</h1>
+                <p>Ce site nécessite JavaScript pour fonctionner correctement.</p>
+                <p>Veuillez activer JavaScript dans votre navigateur.</p>
+            </div>
+        </div>
+    </noscript>
+</body>
+</html>
