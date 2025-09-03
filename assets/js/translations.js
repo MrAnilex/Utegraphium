@@ -8,7 +8,7 @@ const translations = {
         nav_contact: "📧 Contact",
         
         // Section héro
-        hero_title: "Bienvenue sur mon supposé site ? (c'est toujours en cours de coding)",
+        hero_title: "Bienvenue sur mon supposé site ? (c'est toujours en cours de développement)",
         hero_subtitle: "Salut ! Je suis un mec passionné qui aime créer des choses cool. Je suis le fou du bus. RUUUUUUUH ! 🚌",
         stats_visitors: "Visiteurs uniques",
         stats_pages: "Visites totales",
@@ -63,7 +63,7 @@ const translations = {
         nav_contact: "📧 Contact",
         
         // Section héro
-        hero_title: "Welcome to my supposed site ? (it's still in the process of coding)",
+        hero_title: "Welcome to my supposed site ? (it's still under development)",
         hero_subtitle: "Hi! I'm a passionate guy who loves creating cool stuff. I'm the bus crazy guy. RUUUUUUUH ! 🚌",
         stats_visitors: "Unique visitors",
         stats_pages: "Page views",
@@ -74,7 +74,7 @@ const translations = {
         fact_gaming: "I love GAMING video games, PCs and cinema 🎮",
         fact_chaos: "I'm way too random and chaotic (METALLURGY) 🌪️",
         fact_social: "I'm GIGA social 👥",
-        fact_french: "I'm French and I love creating cool stuff 🇫🇷",
+        fact_french: "I'm French, I am of Algerian origin and I love creating cool stuff ! 🇫🇷 🇩🇿",
         
         // Section statistiques
         stats_title: "📊 Detailed Statistics (I think they're bugged)",
