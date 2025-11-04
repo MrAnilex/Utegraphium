@@ -1,5 +1,5 @@
 // Fichier de traductions pour Utegraphium
-const translations = {
+var translations = {
     fr: {
         // Navigation
         nav_home: "🏠 Accueil",

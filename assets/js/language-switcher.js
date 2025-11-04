@@ -1,33 +1,41 @@
 // Système de traduction automatique pour Utegraphium
-class LanguageSwitcher {
-    constructor() {
+(function() {
+    'use strict';
+
+    function LanguageSwitcher() {
         this.currentLanguage = 'en'; // Langue par défaut : anglais
         this.init();
     }
 
-    init() {
+    LanguageSwitcher.prototype.init = function() {
         this.loadSavedLanguage();
         this.applyTranslations();
         this.addLanguageToggle();
         this.updatePageLanguage();
-    }
+    };
 
     // Charge la langue sauvegardée
-    loadSavedLanguage() {
-        const savedLang = localStorage.getItem('utegraphium_language');
+    LanguageSwitcher.prototype.loadSavedLanguage = function() {
+        var savedLang = null;
+        try {
+            savedLang = localStorage.getItem('utegraphium_language');
+        } catch (error) {
+            savedLang = null;
+        }
+
         if (savedLang && (savedLang === 'fr' || savedLang === 'en')) {
             this.currentLanguage = savedLang;
         } else {
             // Si aucune langue sauvegardée, détecte automatiquement
             this.detectLanguage();
         }
-    }
+    };
 
     // Détecte la langue du navigateur
-    detectLanguage() {
-        const browserLang = navigator.language || navigator.userLanguage;
-        const langCode = browserLang.split('-')[0];
-        
+    LanguageSwitcher.prototype.detectLanguage = function() {
+        var browserLang = navigator.language || navigator.userLanguage || 'en';
+        var langCode = browserLang.split('-')[0];
+
         // Si la langue du navigateur est français, on passe en français
         if (langCode === 'fr') {
             this.currentLanguage = 'fr';
@@ -37,14 +45,18 @@ class LanguageSwitcher {
             this.currentLanguage = 'en';
             console.log('🇬🇧 Langue anglaise par défaut');
         }
-        
-        localStorage.setItem('utegraphium_language', this.currentLanguage);
-    }
+
+        try {
+            localStorage.setItem('utegraphium_language', this.currentLanguage);
+        } catch (error) {
+            // Ignorer les erreurs de stockage
+        }
+    };
 
     // Applique les traductions
-    applyTranslations() {
-        const lang = this.currentLanguage;
-        const t = translations[lang];
+    LanguageSwitcher.prototype.applyTranslations = function() {
+        var lang = this.currentLanguage;
+        var t = translations[lang];
 
         if (!t) {
             console.warn('Traductions non trouvées pour:', lang);
@@ -82,7 +94,6 @@ class LanguageSwitcher {
         this.updateText('.stat-card:nth-child(3) p', t.stats_today_desc);
         this.updateText('.stat-card:nth-child(4) p', t.stats_week_desc);
 
-
         // Footer
         this.updateText('.footer-section:first-child h3', t.footer_title);
         this.updateText('.footer-section:first-child p', t.footer_description);
@@ -104,59 +115,62 @@ class LanguageSwitcher {
 
         // Met à jour l'attribut lang du HTML
         this.updatePageLanguage();
-    }
+    };
 
     // Met à jour le texte d'un élément
-    updateText(selector, text) {
+    LanguageSwitcher.prototype.updateText = function(selector, text) {
         try {
-            const element = document.querySelector(selector);
+            var element = document.querySelector(selector);
             if (element && text) {
                 element.textContent = text;
             }
         } catch (error) {
             console.warn('Erreur lors de la mise à jour du texte:', selector, error);
         }
-    }
+    };
 
     // Met à jour la langue de la page
-    updatePageLanguage() {
+    LanguageSwitcher.prototype.updatePageLanguage = function() {
         document.documentElement.lang = this.currentLanguage;
         // Le titre reste le même dans les deux langues
         document.title = 'UTEGRAPHIUM !!';
-    }
+    };
 
     // Ajoute un bouton de changement de langue
-    addLanguageToggle() {
+    LanguageSwitcher.prototype.addLanguageToggle = function() {
         try {
-            const navbar = document.querySelector('.nav-container');
-            if (!navbar) return;
+            var navbar = document.querySelector('.nav-container');
+            if (!navbar) {
+                return;
+            }
 
             // Vérifie si le bouton existe déjà
-            let toggleBtn = document.querySelector('.language-toggle');
-            
+            var toggleBtn = document.querySelector('.language-toggle');
+            var self = this;
+
             if (!toggleBtn) {
                 // Crée le bouton seulement s'il n'existe pas
                 toggleBtn = document.createElement('button');
                 toggleBtn.className = 'language-toggle';
                 toggleBtn.setAttribute('aria-label', 'Changer de langue');
-                
-                toggleBtn.addEventListener('click', () => {
-                    this.toggleLanguage();
+
+                toggleBtn.addEventListener('click', function() {
+                    self.toggleLanguage();
                 });
 
                 navbar.appendChild(toggleBtn);
             }
-            
+
             // Met à jour le contenu du bouton sans le recréer
             this.updateToggleButton(toggleBtn);
-            
+
         } catch (error) {
             console.warn('Erreur lors de la création du bouton de langue:', error);
         }
-    }
+    };
 
     // Met à jour le contenu du bouton de langue
-    updateToggleButton(button) {
+    LanguageSwitcher.prototype.updateToggleButton = function(button) {
         try {
             if (this.currentLanguage === 'fr') {
                 button.innerHTML = '🇫🇷 FR';
@@ -170,86 +184,99 @@ class LanguageSwitcher {
         } catch (error) {
             console.warn('Erreur lors de la mise à jour du bouton de langue:', error);
         }
-    }
+    };
 
     // Change la langue
-    toggleLanguage() {
+    LanguageSwitcher.prototype.toggleLanguage = function() {
         try {
             this.currentLanguage = this.currentLanguage === 'fr' ? 'en' : 'fr';
-            localStorage.setItem('utegraphium_language', this.currentLanguage);
-            
+            try {
+                localStorage.setItem('utegraphium_language', this.currentLanguage);
+            } catch (error) {
+                // Ignorer les erreurs de stockage
+            }
+
             this.applyTranslations();
-            
+
             // Met à jour le bouton sans le recréer
-            const toggleBtn = document.querySelector('.language-toggle');
+            var toggleBtn = document.querySelector('.language-toggle');
             if (toggleBtn) {
                 this.updateToggleButton(toggleBtn);
             }
-            
-            // Animation de transition
-            document.body.style.opacity = '0.8';
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 150);
-            
+
+            var body = document.body;
+            if (body) {
+                body.style.opacity = '0.8';
+                setTimeout(function() {
+                    body.style.opacity = '1';
+                }, 150);
+            }
+
             console.log('🌍 Langue changée vers:', this.currentLanguage);
         } catch (error) {
             console.error('Erreur lors du changement de langue:', error);
         }
-    }
+    };
 
     // Obtient la langue actuelle
-    getCurrentLanguage() {
+    LanguageSwitcher.prototype.getCurrentLanguage = function() {
         return this.currentLanguage;
-    }
+    };
 
     // Obtient une traduction
-    getText(key) {
-        const lang = this.currentLanguage;
+    LanguageSwitcher.prototype.getText = function(key) {
+        var lang = this.currentLanguage;
         return translations[lang] && translations[lang][key] ? translations[lang][key] : key;
-    }
+    };
 
     // Réinitialise la langue et force la détection automatique
-    resetLanguage() {
-        localStorage.removeItem('utegraphium_language');
+    LanguageSwitcher.prototype.resetLanguage = function() {
+        try {
+            localStorage.removeItem('utegraphium_language');
+        } catch (error) {
+            // Ignorer les erreurs de stockage
+        }
         this.detectLanguage();
         this.applyTranslations();
         this.updatePageLanguage();
-        
-        const toggleBtn = document.querySelector('.language-toggle');
+
+        var toggleBtn = document.querySelector('.language-toggle');
         if (toggleBtn) {
             this.updateToggleButton(toggleBtn);
         }
-        
+
         console.log('🔄 Langue réinitialisée et détectée automatiquement:', this.currentLanguage);
+    };
+
+    var languageSwitcher = null;
+
+    function initLanguageSwitcher() {
+        try {
+            languageSwitcher = new LanguageSwitcher();
+            window.languageSwitcher = languageSwitcher;
+            console.log('🌍 Système de langue initialisé');
+
+            window.resetLanguage = function() {
+                if (languageSwitcher) {
+                    languageSwitcher.resetLanguage();
+                }
+            };
+
+            console.log('💡 Commandes disponibles:');
+            console.log('  - resetLanguage() : Réinitialise et détecte automatiquement la langue');
+            console.log('  - languageSwitcher.getCurrentLanguage() : Affiche la langue actuelle');
+        } catch (error) {
+            console.error('Erreur lors de l\'initialisation du système de langue:', error);
+        }
     }
-}
 
-// Initialise le système de langue quand la page est chargée
-let languageSwitcher = null;
-
-document.addEventListener('DOMContentLoaded', () => {
-    try {
-        languageSwitcher = new LanguageSwitcher();
-        console.log('🌍 Système de langue initialisé');
-        
-        // Ajoute des commandes de debug dans la console
-        window.resetLanguage = () => {
-            if (languageSwitcher) {
-                languageSwitcher.resetLanguage();
-            }
-        };
-        
-        console.log('💡 Commandes disponibles:');
-        console.log('  - resetLanguage() : Réinitialise et détecte automatiquement la langue');
-        console.log('  - languageSwitcher.getCurrentLanguage() : Affiche la langue actuelle');
-        
-    } catch (error) {
-        console.error('Erreur lors de l\'initialisation du système de langue:', error);
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
+    } else {
+        initLanguageSwitcher();
     }
-});
 
-// Export pour utilisation dans d'autres modules
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = LanguageSwitcher;
-}
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = LanguageSwitcher;
+    }
+})();
