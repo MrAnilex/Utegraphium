@@ -33,6 +33,10 @@
             this.audio.src = 'assets/music/background-music.mp3';
             this.audio.loop = true;
             this.audio.volume = this.volume;
+            this.audio.preload = 'auto';
+            this.audio.autoplay = true;
+            this.audio.setAttribute('playsinline', 'playsinline');
+            this.audio.load();
             this.audio.preload = 'none'; // Éviter le préchargement automatique
 
             var self = this;
@@ -45,6 +49,17 @@
             this.audio.addEventListener('canplay', function() {
                 console.log('🎵 Audio prêt');
             });
+
+            this.audio.addEventListener('loadeddata', function() {
+                self.attemptPlay();
+            });
+
+            if (typeof window !== 'undefined') {
+                window.addEventListener('load', function onLoad() {
+                    window.removeEventListener('load', onLoad, false);
+                    self.attemptPlay();
+                }, false);
+            }
         } catch (error) {
             console.warn('Audio non supporté:', error);
             this.disableMusic();
@@ -96,6 +111,7 @@
                 }
             }
 
+            this.attemptPlay();
             var self = this;
             // Tentative de lecture différée
             setTimeout(function() {
