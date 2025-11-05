@@ -4,7 +4,7 @@ var translations = {
         // Navigation
         nav_home: "🏠 Accueil",
         nav_blog: "📝 Blog",
-        nav_about: "👤 À propos",
+        nav_about: "🗂️ Portfolio",
         nav_contact: "📧 Contact",
         
         // Section héro
@@ -59,7 +59,7 @@ var translations = {
         // Navigation
         nav_home: "🏠 Home",
         nav_blog: "📝 Blog",
-        nav_about: "👤 About",
+        nav_about: "🗂️ Portfolio",
         nav_contact: "📧 Contact",
         
         // Section héro
