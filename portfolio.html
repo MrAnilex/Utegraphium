@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Portfolio en cours de construction - Utegraphium">
+    <title>Portfolio - Utegraphium</title>
+    <link rel="preload" href="assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="assets/css/browser-compatibility.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/browser-compatibility.css">
+    </noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #ffb366 0%, #ff9933 50%, #ff8000 100%);
+            color: #1f1f1f;
+        }
+        .navbar {
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 1rem 0;
+        }
+        .nav-container {
+            width: min(1100px, 90%);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo h2 {
+            margin: 0;
+        }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .nav-link.active,
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        .construction-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+        .construction-card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 1.5rem;
+            padding: 3rem 2rem;
+            max-width: 540px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        .construction-card h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .construction-card p {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            background: #ff8000;
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 128, 0, 0.4);
+        }
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .construction-card {
+                padding: 2.5rem 1.5rem;
+            }
+            .construction-card h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🪐Utegraphium🌌</h2>
+            </div>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html" class="nav-link" role="menuitem">🏠 Accueil</a></li>
+                <li role="none"><a href="#" class="nav-link" role="menuitem">📝 Blog</a></li>
+                <li role="none"><a href="portfolio.html" class="nav-link active" role="menuitem">🗂️ Portfolio</a></li>
+                <li role="none"><a href="#" class="nav-link" role="menuitem">📧 Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="construction-section" role="main">
+        <div class="construction-card">
+            <h1>🚧 Portfolio en chantier</h1>
+            <p>Merci pour ta visite ! Cette section est en cours de construction. Reviens bientôt pour découvrir mes projets et réalisations.</p>
+            <a class="back-link" href="index.html">⬅️ Retourner à l'accueil</a>
+        </div>
+    </main>
+</body>
+</html>

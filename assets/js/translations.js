@@ -1,10 +1,10 @@
 // Fichier de traductions pour Utegraphium
-const translations = {
+var translations = {
     fr: {
         // Navigation
         nav_home: "🏠 Accueil",
         nav_blog: "📝 Blog",
-        nav_about: "👤 À propos",
+        nav_about: "🗂️ Portfolio",
         nav_contact: "📧 Contact",
         
         // Section héro
@@ -59,7 +59,7 @@ const translations = {
         // Navigation
         nav_home: "🏠 Home",
         nav_blog: "📝 Blog",
-        nav_about: "👤 About",
+        nav_about: "🗂️ Portfolio",
         nav_contact: "📧 Contact",
         
         // Section héro
