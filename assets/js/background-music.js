@@ -37,6 +37,7 @@
             this.audio.autoplay = true;
             this.audio.setAttribute('playsinline', 'playsinline');
             this.audio.load();
+            this.audio.preload = 'none'; // Éviter le préchargement automatique
 
             var self = this;
             // Gestion des erreurs simplifiée
@@ -111,6 +112,11 @@
             }
 
             this.attemptPlay();
+            var self = this;
+            // Tentative de lecture différée
+            setTimeout(function() {
+                self.attemptPlay();
+            }, 2000);
         } catch (error) {
             console.warn('Préférences non chargées:', error);
         }
