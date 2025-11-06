@@ -38,7 +38,7 @@ var translations = {
         footer_description: "Un site personnel unique et créatif",
         quick_links: "🔗 Liens rapides",
         follow_me: "🌐 Suivez-moi",
-        copyright: "Utegraphium. Créé avec ❤️ et beaucoup de ☕",
+        copyright: "© 2026 Utegraphium. Créé avec BEAUCOUP DE FUN :D ! et beaucoup de caféine PURE ☕",
         
         // Réseaux sociaux
         youtube: "📺 YouTube",
@@ -93,7 +93,7 @@ var translations = {
         footer_description: "A unique and creative personal website",
         quick_links: "🔗 Quick links",
         follow_me: "🌐 Follow me (Content in French)",
-        copyright: "Utegraphium. Created with ❤️ and lots of ☕",
+        copyright: "© 2026 Utegraphium !! Created with a LOT OF FUN :D !! and lots of PURE CAFEINE ☕",
         
         // Social networks
         youtube: "📺 YouTube",
