@@ -14,10 +14,11 @@ const STATIC_ASSETS = [
     './assets/js/polyfills.js',
     './assets/js/browser-detection.js',
     './assets/js/performance-config.js',
+    './assets/js/counterapi-config.js',
     './assets/js/translations.js',
     './assets/js/language-switcher.js',
     './assets/js/background-music.js',
-    './assets/js/visitor-counter.js',
+    './assets/js/shared-counter.js',
     './assets/js/site-repair.js',
     './manifest.json'
 ];
