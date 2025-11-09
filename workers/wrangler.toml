@@ -1,0 +1,11 @@
+name = "utegraphium-counterapi-proxy"
+main = "counterapi-proxy.js"
+compatibility_date = "2024-05-01"
+
+[vars]
+COUNTERAPI_NAMESPACE = "utegraphium"
+COUNTERAPI_TOTAL_KEY = "total-visits"
+COUNTERAPI_UNIQUE_KEY = "unique-visitors"
+COUNTERAPI_BASE_URL = "https://counterapi.dev"
+# Facultatif : verrouillez les requêtes à votre domaine (ex: https://utegraphium.com)
+ALLOWED_ORIGIN = "https://utegraphium.com"
