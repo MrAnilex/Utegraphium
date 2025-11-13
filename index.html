@@ -233,36 +233,42 @@
     <script src="assets/js/polyfills.js"></script>
     <script src="assets/js/browser-detection.js" defer></script>
     <script src="assets/js/performance-config.js" defer></script>
-    <script src="assets/js/counterapi-config.js" defer></script>
     <script src="assets/js/translations.js" defer></script>
     <script src="assets/js/language-switcher.js" defer></script>
     <script src="assets/js/background-music.js" defer></script>
-    <script src="assets/js/shared-counter.js" defer></script>
     <script src="assets/js/site-repair.js" defer></script>
     <script src="assets/js/debug-display.js" defer></script>
     <script src="assets/js/video-background.js" defer></script>
-    <script src="assets/js/video-test.js" defer></script>
     
-    <!-- Initialisation du compteur avec gestion d'erreur -->
+    <!-- Compteur de visites global via CountAPI -->
     <script>
-        // Attendre que le compteur soit initialisé
+      fetch('https://api.countapi.xyz/hit/mranilex/utegraphium')
+        .then(response => response.json())
+        .then(data => {
+          // Mettre à jour tous les éléments avec la classe visitor-count et total-visits-count
+          var visitorCountElements = document.querySelectorAll('.visitor-count');
+          var totalVisitsElements = document.querySelectorAll('.total-visits-count');
+          
+          if (visitorCountElements.length > 0) {
+            for (var i = 0; i < visitorCountElements.length; i++) {
+              visitorCountElements[i].textContent = data.value;
+            }
+          }
+          
+          if (totalVisitsElements.length > 0) {
+            for (var i = 0; i < totalVisitsElements.length; i++) {
+              totalVisitsElements[i].textContent = data.value;
+            }
+          }
+          
+          console.log('✅ Compteur de visites global mis à jour:', data.value);
+        })
+        .catch(error => console.error('Erreur lors de la récupération du compteur de visites:', error));
+    </script>
+    
+    <!-- Initialisation de la vidéo d'arrière-plan -->
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Vérifier périodiquement si le compteur est initialisé
-            var checkCounter = setInterval(function() {
-                if (window.sharedCounter) {
-                    clearInterval(checkCounter);
-                    console.log('✅ Compteur partagé accessible globalement');
-                }
-            }, 100);
-            
-            // Timeout de sécurité
-            setTimeout(function() {
-                clearInterval(checkCounter);
-                if (!window.sharedCounter) {
-                    console.warn('⚠️ Compteur partagé non initialisé après 5 secondes');
-                }
-            }, 5000);
-            
             // Initialisation de la vidéo d'arrière-plan (gérée par VideoBackgroundManager)
             var video = document.querySelector('.background-video');
             if (video) {
