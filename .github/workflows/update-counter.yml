@@ -1,0 +1,145 @@
+```yaml name=.github/workflows/update-counter.yml
+name: Update Visit Counter
+
+on:
+  repository_dispatch:
+    types: [visit_recorded]
+  workflow_dispatch:
+
+jobs:
+  update-counter:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    
+    steps:
+      - name: Get current counter data
+        id: get-counter
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const COUNTER_ISSUE = 1; // ← CHANGE avec ton numéro d'issue
+            
+            try {
+              const issue = await github.rest.issues.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: COUNTER_ISSUE
+              });
+              
+              const body = issue.data.body || '';
+              const match = body.match(/```json\s*\n([\s\S]*?)\n```/);
+              
+              if (match) {
+                const data = JSON.parse(match[1]);
+                core.setOutput('current_data', JSON.stringify(data));
+                return data;
+              } else {
+                const defaultData = {
+                  uniqueVisitors: 0,
+                  totalVisits: 0,
+                  visitsToday: 0,
+                  visitsThisWeek: 0,
+                  lastUpdate: new Date().toISOString(),
+                  dailyStats: {}
+                };
+                core.setOutput('current_data', JSON.stringify(defaultData));
+                return defaultData;
+              }
+            } catch (error) {
+              console.error('Error:', error);
+              const defaultData = {
+                uniqueVisitors: 0,
+                totalVisits: 0,
+                visitsToday: 0,
+                visitsThisWeek: 0,
+                lastUpdate: new Date().toISOString(),
+                dailyStats: {}
+              };
+              core.setOutput('current_data', JSON.stringify(defaultData));
+              return defaultData;
+            }
+
+      - name: Update counter
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const COUNTER_ISSUE = 1; // ← CHANGE avec ton numéro d'issue
+            
+            let data = JSON.parse('${{ steps.get-counter.outputs.current_data }}');
+            
+            const payload = context.payload.client_payload || {};
+            const isNewVisitor = payload.isNewVisitor || false;
+            
+            // Incrémenter les compteurs
+            if (isNewVisitor) {
+              data.uniqueVisitors = (data.uniqueVisitors || 0) + 1;
+            }
+            data.totalVisits = (data.totalVisits || 0) + 1;
+            
+            // Stats quotidiennes
+            const today = new Date().toISOString().split('T')[0];
+            data.dailyStats = data.dailyStats || {};
+            data.dailyStats[today] = (data.dailyStats[today] || 0) + 1;
+            data.visitsToday = data.dailyStats[today];
+            
+            // Stats hebdomadaires
+            const sevenDaysAgo = new Date();
+            sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+            data.visitsThisWeek = Object.entries(data.dailyStats)
+              .filter(([date]) => new Date(date) >= sevenDaysAgo)
+              .reduce((sum, [, count]) => sum + count, 0);
+            
+            // Nettoyer anciennes stats (30 jours max)
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            data.dailyStats = Object.fromEntries(
+              Object.entries(data.dailyStats)
+                .filter(([date]) => new Date(date) >= thirtyDaysAgo)
+            );
+            
+            data.lastUpdate = new Date().toISOString();
+            
+            // Nouveau corps de l'issue
+            const newBody = `# 📊 Compteur de Visites Global
+
+⚠️ **NE PAS MODIFIER** - Mis à jour automatiquement
+
+## Statistiques
+
+\`\`\`json
+${JSON.stringify(data, null, 2)}
+\`\`\`
+
+---
+
+## 📈 7 derniers jours
+
+${Object.entries(data.dailyStats)
+  .sort(([a], [b]) => b.localeCompare(a))
+  .slice(0, 7)
+  .map(([date, count]) => `- **${date}** : ${count} visites`)
+  .join('\n')}
+
+  ---
+
+## 📊 Résumé
+
+- 👥 Visiteurs uniques : **${data.uniqueVisitors}**
+- 🔢 Visites totales : **${data.totalVisits}**
+- 📅 Aujourd'hui : **${data.visitsToday}**
+- 📆 Cette semaine : **${data.visitsThisWeek}**
+
+*Dernière màj : ${data.lastUpdate}*`;
+
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: COUNTER_ISSUE,
+              body: newBody
+            });
+            
+            console.log('✅ Compteur mis à jour');
